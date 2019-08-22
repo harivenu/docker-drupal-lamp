@@ -6,7 +6,7 @@ Docker LAMP for Drupal Project Development
 * MySQL 8.0
 * PhpMyAdmin 4.9.0.1
 * PHP 7.3.8
-* Drush 8.1.14
+* Drush 9.7.1
 * Composer 1.9.0
 * Memcached 3.1.3
 * Mailhog (for catching the email from Drupal app)
