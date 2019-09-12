@@ -67,3 +67,6 @@ RUN curl --location --output /usr/local/bin/mhsendmail https://github.com/mailho
     chmod +x /usr/local/bin/mhsendmail
 
 RUN echo 'sendmail_path="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --from=no-reply@docker.dev"' > /usr/local/etc/php/conf.d/mailhog.ini
+
+# Copy php.ini file to container
+COPY /conf/php.ini /usr/local/etc/php/
