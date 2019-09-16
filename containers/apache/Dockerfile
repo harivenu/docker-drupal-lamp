@@ -1,9 +1,9 @@
-FROM php:7.3-apache 
+FROM php:7.2-apache
 
 MAINTAINER Hari Venu V <harivenu.v1992@gmail.com>
 
 # Set the Drush version.
-ENV DRUSH_VERSION 9.7.1
+ENV DRUSH_VERSION 8.1.14
 
 # Enable rewrite headers
 RUN a2enmod rewrite headers
