@@ -9,7 +9,6 @@ Just open the [path]\docker-compose.yml then edit the MySQL version.
 Docker LAMP for Drupal Project Development
 
 * Apache 2.4.38(Debian)
-* MySQL 8.0
 * PhpMyAdmin 4.9.0.1
 * PHP 7.3.8
 * Drush 9.7.1
