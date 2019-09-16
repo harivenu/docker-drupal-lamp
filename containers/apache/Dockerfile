@@ -1,4 +1,4 @@
-FROM php:7.3-apache 
+FROM php:7.2-apache 
 
 MAINTAINER Hari Venu V <harivenu.v1992@gmail.com>
 
