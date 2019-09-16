@@ -1,12 +1,17 @@
 # Docker Drupal LAMP
 
+This branch for how to changed the Drush version accodring to your project.
+
+Just open the [path]\containers\apache\Dockerfile then edit the Drush version.
+
+`ENV DRUSH_VERSION 9.7.1 to ENV DRUSH_VERSION 8.14` after that compose again.
+
 Docker LAMP for Drupal Project Development
 
 * Apache 2.4.38(Debian)
 * MySQL 8.0
 * PhpMyAdmin 4.9.0.1
 * PHP 7.3.8
-* Drush 9.7.1
 * Composer 1.9.0
 * Memcached 3.1.3
 * Mailhog (for catching the email from Drupal app)
