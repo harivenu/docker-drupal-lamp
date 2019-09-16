@@ -3,7 +3,7 @@ services:
     www:
         build: './containers/apache/'
         ports: 
-            - "8001:80"
+            - "${APACHEPORT}:80"
         volumes:
             - ./www:/var/www/html/
         links:
@@ -16,7 +16,7 @@ services:
     db:
         image: mysql:8.0
         ports: 
-            - "3306:3306"
+            - "${MYSQLPORT}:3306"
         command: --default-authentication-plugin=mysql_native_password
         environment:
             MYSQL_DATABASE: drupal
@@ -33,7 +33,7 @@ services:
         links: 
             - db:db
         ports:
-            - 8000:80
+            - "${PHPMYADMINPORT}:80"
         environment:
             MYSQL_USER: user
             MYSQL_PASSWORD: test
@@ -41,7 +41,7 @@ services:
     mailhog:
         image: mailhog/mailhog
         ports:
-            - 1025:1025
-            - 8025:8025
+            - "${MAILHOGSMTPPORT}:1025"
+            - "${MAILHOGPORT}:8025"
 volumes:
     persistent:
