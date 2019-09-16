@@ -1,5 +1,11 @@
 # Docker Drupal LAMP
 
+This branch for how to changed the MySQL version accodring to your project.
+
+Just open the [path]\docker-compose.yml then edit the MySQL version.
+
+`image: mysql:8.0` to `image: mysql:5.7` after that compose again.
+
 Docker LAMP for Drupal Project Development
 
 * Apache 2.4.38(Debian)
