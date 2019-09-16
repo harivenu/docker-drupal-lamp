@@ -4,7 +4,7 @@ This branch for how to changed the Drush version accodring to your project.
 
 Just open the [path]\containers\apache\Dockerfile then edit the Drush version.
 
-`ENV DRUSH_VERSION 9.7.1 to ENV DRUSH_VERSION 8.14` after that compose again.
+`ENV DRUSH_VERSION 9.7.1 to ENV DRUSH_VERSION 8.1.14` after that compose again.
 
 Docker LAMP for Drupal Project Development
 
