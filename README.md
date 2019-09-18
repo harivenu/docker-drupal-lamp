@@ -10,6 +10,7 @@ Docker LAMP for Drupal Project Development
 * Composer 1.9.0
 * Memcached 3.1.3
 * Mailhog (for catching the email from Drupal app)
+* Drupal Console 1.9.3
 
 # Usage
 
