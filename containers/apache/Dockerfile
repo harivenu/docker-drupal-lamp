@@ -27,7 +27,7 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
         libssl-dev \
         zlib1g-dev \
         libpng-dev \
-        libjpeg-dev \
+        libjpeg62-turbo-dev \
         libfreetype6-dev \
         libaio1 \
         apt-file \
@@ -45,8 +45,7 @@ RUN pecl install redis \
     && pecl install memcached \
     && pecl install timezonedb
 
-RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml gd mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-gd --with-jpeg-dir=/usr/include/ \
+RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-enable redis geoip apcu memcached timezonedb
 	
@@ -73,3 +72,8 @@ COPY /conf/php.ini /usr/local/etc/php/
 
 # Drupal Console installation
 RUN curl --location --output /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal
+
+# Install GD
+RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-install gd
