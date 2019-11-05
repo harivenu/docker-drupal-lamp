@@ -11,6 +11,7 @@ Docker LAMP for Drupal Project Development
 * Memcached 3.1.3
 * Mailhog (for catching the email from Drupal app)
 * Drupal Console 1.9.3
+* Drupal Check (https://github.com/mglaman/drupal-check/)
 
 # Usage
 
