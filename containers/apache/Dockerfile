@@ -77,3 +77,6 @@ RUN curl --location --output /usr/local/bin/drupal https://drupalconsole.com/ins
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
+
+# Drupal Checks
+RUN curl --location --output /usr/local/bin/drupal-check https://github.com/mglaman/drupal-check/releases/latest/download/drupal-check.phar && chmod +x /usr/local/bin/drupal-check
