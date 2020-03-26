@@ -84,3 +84,6 @@ RUN curl --location --output /usr/local/bin/drupal-check https://github.com/mgla
 # bz2 extenstion
 RUN apt-get update && apt-get install -y libbz2-dev
 RUN docker-php-ext-install bz2
+
+# Install PECL Uploadprogress.
+RUN pecl install uploadprogress && echo 'extension=uploadprogress.so' > /usr/local/etc/php/conf.d/uploadprogress.ini
