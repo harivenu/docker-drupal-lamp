@@ -70,6 +70,9 @@ RUN echo 'sendmail_path="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --fr
 # Copy php.ini file to container
 COPY /conf/php.ini /usr/local/etc/php/
 
+# Copy 000-default.conf file to container for composer based drupal project.
+COPY /conf/000-default.conf /etc/apache2/sites-available
+
 # Drupal Console installation
 RUN curl --location --output /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal
 
