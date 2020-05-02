@@ -87,3 +87,6 @@ RUN docker-php-ext-install bz2
 
 # Install PECL Uploadprogress.
 RUN pecl install uploadprogress && echo 'extension=uploadprogress.so' > /usr/local/etc/php/conf.d/uploadprogress.ini
+
+# NPM install
+RUN apt-get install nodejs -y
