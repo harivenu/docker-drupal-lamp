@@ -50,4 +50,7 @@ Password : test
 For Mailhog access
 Just visit - http://localhost:8025/
 
+For Xdebug (Visual Studio Code)
+Install PHP Debug extention then add launch.json to Visual Studio Code.
+
 Enjoy..!!
