@@ -101,3 +101,6 @@ RUN pecl install xdebug \
     # && echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     && echo "xdebug.remote_host=172.19.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_log='/tmp/xdebug.log'" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# An IDE key has to be set, but anything works, at least for PhpStorm and VS Code...
+ENV XDEBUG_CONFIG="xdebug.idekey='CODE'"
