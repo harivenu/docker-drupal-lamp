@@ -12,6 +12,7 @@ Docker LAMP for Drupal Project Development
 * Mailhog (for catching the email from Drupal app)
 * Drupal Console 1.9.3
 * Drupal Check (https://github.com/mglaman/drupal-check/)
+* xdebug 2.9.6 (Visual Studio Code)
 
 # Usage
 
