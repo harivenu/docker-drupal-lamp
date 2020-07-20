@@ -79,7 +79,9 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install gd
 
 # Drupal Checks
-RUN curl --location --output /usr/local/bin/drupal-check https://github.com/mglaman/drupal-check/releases/latest/download/drupal-check.phar && chmod +x /usr/local/bin/drupal-check
+RUN composer global require mglaman/drupal-check && \
+  ln -sf /root/.composer/vendor/mglaman/drupal-check/drupal-check /usr/local/bin/ && \
+  chmod +x /usr/local/bin/drupal-check
 
 # bz2 extenstion
 RUN apt-get update && apt-get install -y libbz2-dev
