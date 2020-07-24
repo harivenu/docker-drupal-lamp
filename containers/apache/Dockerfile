@@ -48,6 +48,11 @@ RUN pecl install redis \
 RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-enable redis geoip apcu memcached timezonedb
+    
+# Install SSL
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem -subj "/C=AT/ST=Vienna/L=Vienna/O=Security/OU=Development/CN=example.com"
+RUN a2ensite default-ssl
+RUN a2enmod ssl
 	
 # Composer installation
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
