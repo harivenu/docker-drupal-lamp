@@ -27,7 +27,7 @@ docker-compose up -d
 ```
 
 Open phpmyadmin at [http://localhost:8000](http://localhost:8000)
-Open web browser to look at a simple php example at [http://localhost:8001](http://localhost:8001)
+Open web browser to look at a simple php example at [http://localhost](http://localhost:8001) also Secure connection [https://localhost](https://localhost)
 
 Place your Drupal code on [www](https://github.com/harivenu/docker-drupal-lamp/tree/master/www) directory it is already mount on apache container /var/www/html directory
 
