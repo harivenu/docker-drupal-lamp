@@ -36,7 +36,11 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
         gnupg \
         gnupg2 \
         zip \
-        git
+        git \
+	npm \
+        nodejs \
+        memcached \
+        libmemcached-tools
 
 # Install PECLs
 RUN pecl install redis \
