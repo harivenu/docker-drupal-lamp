@@ -1,0 +1,50 @@
+# For advice on how to change settings please see
+# httpdev.mysql.comdocrefman5.6enserver-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M                                                                                                                                            8Nt_hnIZgl8jAsync).          [ok]       
+#
+# Remove leading # to turn on a very important data integrity option logging                                                                                                                             [ok]       
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=varlibmysql
+socket=varlibmysqlmysql.sock
+
+#max_allowed_packet=512M
+max_allowed_packet=1G
+
+#Configuration secure_file_priv
+secure_file_priv=''
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+# Recommended in standard MySQL setup
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+innodb_log_file_size=512M
+
+
+wait_timeout=300
+net_read_timeout=300
+net_write_timeout=300
+interactive_timeout=300
+connect_timeout=300
+
+[mysqld_safe]
+log-error=varlogmysqld.log
+pid-file=varrunmysqldmysqld.pid
+innodb_log_file_size=512M
+
+[mysqldump]
+max_allowed_packet=1G
