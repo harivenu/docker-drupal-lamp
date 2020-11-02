@@ -5,6 +5,9 @@ MAINTAINER Hari Venu V <harivenu.v1992@gmail.com>
 # Set the Drush version.
 ENV DRUSH_VERSION 9.7.1
 
+# Set the composer version.
+ENV COMPOSER_VERSION 1.10.17
+
 # Enable rewrite headers
 RUN a2enmod rewrite headers
 
@@ -59,7 +62,7 @@ RUN a2ensite default-ssl
 RUN a2enmod ssl
 	
 # Composer installation
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version="$COMPOSER_VERSION" 
 
 # Install Drush using Composer.
 RUN composer global require drush/drush:"$DRUSH_VERSION" --prefer-dist
