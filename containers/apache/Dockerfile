@@ -6,7 +6,7 @@ MAINTAINER Hari Venu V <harivenu.v1992@gmail.com>
 ENV DRUSH_VERSION 9.7.1
 
 # Set the composer version.
-ENV COMPOSER_VERSION 1.10.17
+ENV COMPOSER_VERSION 2.0.12
 
 # Enable rewrite headers
 RUN a2enmod rewrite headers
