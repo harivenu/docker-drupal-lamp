@@ -118,3 +118,10 @@ RUN pecl install xdebug \
 
 # An IDE key has to be set, but anything works, at least for PhpStorm and VS Code...
 ENV XDEBUG_CONFIG="xdebug.idekey='CODE'"
+
+# Installing GMP for web push notification 
+RUN apt-get update -y
+RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+RUN docker-php-ext-configure gmp 
+RUN docker-php-ext-install gmp
