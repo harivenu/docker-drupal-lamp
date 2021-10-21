@@ -68,7 +68,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer global require drush/drush:"$DRUSH_VERSION" --prefer-dist
 
 # Making drush as global command
-RUN ln -s /root/.composer/vendor/drush/drush/drush /usr/local/bin/
+RUN ln -s /root/.config/composer/vendor/bin/drush /bin/
 
 # MySQL client installation
 RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
@@ -83,7 +83,7 @@ RUN echo 'sendmail_path="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --fr
 COPY /conf/php.ini /usr/local/etc/php/
 
 # Drupal Console installation
-RUN curl --location --output /usr/local/bin/drupal https://drupalconsole.com/installer && chmod +x /usr/local/bin/drupal
+RUN curl --location --output /bin/drupal https://drupalconsole.com/installer && chmod +x /bin/drupal
 
 # Install GD
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev
@@ -92,8 +92,8 @@ RUN docker-php-ext-install gd
 
 # Drupal Checks
 RUN composer global require mglaman/drupal-check && \
-  ln -sf /root/.composer/vendor/mglaman/drupal-check/drupal-check /usr/local/bin/ && \
-  chmod +x /usr/local/bin/drupal-check
+  ln -sf /root/.config/composer/vendor/mglaman/drupal-check/drupal-check /bin/ && \
+  chmod +x /bin/drupal-check
 
 # bz2 extenstion
 RUN apt-get update && apt-get install -y libbz2-dev
