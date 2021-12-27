@@ -3,7 +3,7 @@ FROM php:7.3-apache
 MAINTAINER Hari Venu V <harivenu.v1992@gmail.com>
 
 # Set the Drush version.
-ENV DRUSH_VERSION 9.7.1
+ENV DRUSH_VERSION 10.6.2
 
 # Set the composer version.
 ENV COMPOSER_VERSION 2.0.12
