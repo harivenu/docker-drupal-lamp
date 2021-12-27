@@ -86,7 +86,10 @@ RUN echo 'sendmail_path="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --fr
 COPY /conf/php.ini /usr/local/etc/php/
 
 # Drupal Console installation
-RUN curl --location --output /bin/drupal https://drupalconsole.com/installer && chmod +x /bin/drupal
+RUN composer global require drupal/console --prefer-dist --optimize-autoloader --with-all-dependencies
+
+# Making drupal as global command
+RUN ln -s /root/.config/composer/vendor/bin/drupal /bin/
 
 # Install GD
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev
