@@ -51,6 +51,9 @@ RUN pecl install redis \
     && pecl install apcu \
     && pecl install memcached \
     && pecl install timezonedb
+    
+# Install soap
+RUN docker-php-ext-install soap
 
 RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif \
     && docker-php-ext-configure zip --with-libzip \
