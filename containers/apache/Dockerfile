@@ -76,11 +76,6 @@ RUN ln -s /root/.config/composer/vendor/bin/drush /bin/
 # MySQL client installation
 RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
 
-# Mailhog
-RUN curl --location --output /usr/local/bin/mhsendmail https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 && \
-    chmod +x /usr/local/bin/mhsendmail
-
-RUN echo 'sendmail_path="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --from=no-reply@docker.dev"' > /usr/local/etc/php/conf.d/mailhog.ini
 
 # Copy php.ini file to container
 COPY /conf/php.ini /usr/local/etc/php/
@@ -131,3 +126,13 @@ RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
 RUN docker-php-ext-configure gmp 
 RUN docker-php-ext-install gmp
+
+
+RUN apt-get install -q -y ssmtp mailutils
+RUN echo "root=<email>" >> /etc/ssmtp/ssmtp.conf
+RUN echo "mailhub=<smtphost>:<smtpport>" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthUser=<smptuser>" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthPass=<smtppassword>" >> /etc/ssmtp/ssmtp.conf
+RUN echo "UseTLS=YES" >> /etc/ssmtp/ssmtp.conf
+RUN echo "UseSTARTTLS=YES" >> /etc/ssmtp/ssmtp.conf
+RUN echo "sendmail_path=sendmail -i -t" >> /usr/local/etc/php/conf.d/php-sendmail.ini

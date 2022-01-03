@@ -40,10 +40,5 @@ services:
             MYSQL_USER: user
             MYSQL_PASSWORD: test
             MYSQL_ROOT_PASSWORD: test
-    mailhog:
-        image: mailhog/mailhog
-        ports:
-            - 1025:1025
-            - 8025:8025
 volumes:
     persistent:
