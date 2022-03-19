@@ -1,9 +1,9 @@
-FROM php:7.3-apache 
+FROM php:7.4-apache 
 
 MAINTAINER Hari Venu V <harivenu.v1992@gmail.com>
 
 # Set the Drush version.
-ENV DRUSH_VERSION 10.6.2
+ENV DRUSH_VERSION 10.6.1
 
 # Set the composer version.
 ENV COMPOSER_VERSION 2.0.12
@@ -43,7 +43,8 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
 	npm \
         nodejs \
         memcached \
-        libmemcached-tools
+        libmemcached-tools \
+        libonig-dev
 
 # Install PECLs
 RUN pecl install redis \
@@ -51,13 +52,12 @@ RUN pecl install redis \
     && pecl install apcu \
     && pecl install memcached \
     && pecl install timezonedb
-    
-# Install soap
-RUN docker-php-ext-install soap
 
-RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif \
-    && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-enable redis geoip apcu memcached timezonedb
+RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif 
+
+RUN docker-php-ext-configure zip
+
+RUN docker-php-ext-enable redis geoip apcu memcached timezonedb
     
 # Install SSL
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem -subj "/C=AT/ST=Vienna/L=Vienna/O=Security/OU=Development/CN=example.com"
@@ -86,14 +86,11 @@ RUN echo 'sendmail_path="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --fr
 COPY /conf/php.ini /usr/local/etc/php/
 
 # Drupal Console installation
-RUN composer global require drupal/console --prefer-dist --optimize-autoloader --with-all-dependencies
-
-# Making drupal as global command
-RUN ln -s /root/.config/composer/vendor/bin/drupal /bin/
+RUN curl --location --output /bin/drupal https://drupalconsole.com/installer && chmod +x /bin/drupal
 
 # Install GD
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
 
 # Drupal Checks
@@ -131,3 +128,12 @@ RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
 RUN docker-php-ext-configure gmp 
 RUN docker-php-ext-install gmp
+
+# RUN apt-get install -q -y ssmtp mailutils
+# RUN echo "root=info@qatarolympicacademy.org" >> /etc/ssmtp/ssmtp.conf
+# RUN echo "mailhub=smtp.office365.com:587" >> /etc/ssmtp/ssmtp.conf
+# RUN echo "AuthUser=info@qatarolympicacademy.org" >> /etc/ssmtp/ssmtp.conf
+# RUN echo "AuthPass=gltcfvyclmpbhtly" >> /etc/ssmtp/ssmtp.conf
+# RUN echo "UseTLS=YES" >> /etc/ssmtp/ssmtp.conf
+# RUN echo "UseSTARTTLS=YES" >> /etc/ssmtp/ssmtp.conf
+# RUN echo "sendmail_path=sendmail -i -t" >> /usr/local/etc/php/conf.d/php-sendmail.ini
