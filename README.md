@@ -6,11 +6,10 @@ Docker LAMP for Drupal Project Development
 * MySQL 8.0
 * PhpMyAdmin 4.9.0.1
 * PHP 7.4.28
-* Drush 9.7.1
-* Composer 1.9.0
+* Drush 11.0.3
+* Composer 2.0.12
 * Memcached 3.1.3
 * Mailhog (for catching the email from Drupal app)
-* Drupal Console 1.9.3
 * Drupal Check (https://github.com/mglaman/drupal-check/)
 * xdebug 2.9.6 (Visual Studio Code)
 
