@@ -128,12 +128,3 @@ RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
 RUN docker-php-ext-configure gmp 
 RUN docker-php-ext-install gmp
-
-# RUN apt-get install -q -y ssmtp mailutils
-# RUN echo "root=info@qatarolympicacademy.org" >> /etc/ssmtp/ssmtp.conf
-# RUN echo "mailhub=smtp.office365.com:587" >> /etc/ssmtp/ssmtp.conf
-# RUN echo "AuthUser=info@qatarolympicacademy.org" >> /etc/ssmtp/ssmtp.conf
-# RUN echo "AuthPass=gltcfvyclmpbhtly" >> /etc/ssmtp/ssmtp.conf
-# RUN echo "UseTLS=YES" >> /etc/ssmtp/ssmtp.conf
-# RUN echo "UseSTARTTLS=YES" >> /etc/ssmtp/ssmtp.conf
-# RUN echo "sendmail_path=sendmail -i -t" >> /usr/local/etc/php/conf.d/php-sendmail.ini
