@@ -3,7 +3,7 @@
 Docker LAMP for Drupal Project Development
 
 * Apache 2.4.38(Debian)
-* MySQL 8.0
+* MySQL 5.7
 * PhpMyAdmin 4.9.0.1
 * PHP 7.4.28
 * Drush 11.0.3
@@ -11,7 +11,8 @@ Docker LAMP for Drupal Project Development
 * Memcached 3.1.3
 * Mailhog (for catching the email from Drupal app)
 * Drupal Check (https://github.com/mglaman/drupal-check/)
-* xdebug 2.9.6 (Visual Studio Code)
+* xdebug 3.x (Visual Studio Code)
+* Cron
 
 # Usage
 
