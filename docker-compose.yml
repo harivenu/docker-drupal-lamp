@@ -1,12 +1,33 @@
 version: "3.1"
 services:
     www:
-        build: './containers/apache/'
+        extra_hosts:
+           - "host.docker.internal:host-gateway" 
+        build:
+            context: './containers/apache/'
+            args:
+            # Available [trace|debug|profile]. Use Comma separated available values for multiple mode
+            # Use "off" to disable xdebug
+            #- XDEBUG_MODES=profile,debug,trace
+            - XDEBUG_MODES=off
+            # Set the following values to overwrite the existing settings.
+            # Uncomment the following line and change value.
+            - REMOTE_HOST=host.docker.internal # Host machine IP
+            - REMOTE_PORT=9003 # IDE/Editor's listener port
+            - IDE_KEY=VSCODE # IDE's filter/listener key
+            # App folder name, add NOFOLDER for disable the DocumentRoot rewrite
+            - APP_FOLDER=NOFOLDER
+            # Setup cron, available options [enable|disable]
+            - APP_CRON=disable
+            # Setup memcached, available options [enable|disable]
+            - APP_MEMCACHED=enable
         ports: 
             - 80:80
             - 443:443
+            - 11211:11211
         volumes:
             - ./www:/var/www/html/
+            - ./xdebug:/opt/xdebug/
         links:
             - db
             - mailhog

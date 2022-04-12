@@ -1,12 +1,17 @@
 FROM php:7.4-apache 
 
-MAINTAINER Hari Venu V <harivenu.v1992@gmail.com>
+LABEL maintainer="Hari Venu V <harivenu.v1992@gmail.com>"
+
+ARG APP_FOLDER
+ARG APP_CRON
+ENV APP_FOLDER=$APP_FOLDER
+ENV APP_CRON=$APP_CRON
 
 # Set the Drush version.
-ENV DRUSH_VERSION 10.6.1
+ENV DRUSH_VERSION 11.0.8
 
 # Set the composer version.
-ENV COMPOSER_VERSION 2.0.12
+ENV COMPOSER_VERSION 2.3.4
 
 # Enable rewrite headers
 RUN a2enmod rewrite headers
@@ -21,7 +26,6 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
-        libmemcached-dev \
         libzip-dev \
         libgeoip-dev \
         libxml2-dev \
@@ -40,24 +44,21 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
         gnupg2 \
         zip \
         git \
-	npm \
+	      npm \
         nodejs \
-        memcached \
-        libmemcached-tools \
-        libonig-dev
+        libonig-dev \
+        cron
 
 # Install PECLs
-RUN pecl install redis \
-    && pecl install geoip-1.1.1 \
+RUN pecl install geoip-1.1.1 \
     && pecl install apcu \
-    && pecl install memcached \
     && pecl install timezonedb
 
 RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif 
 
 RUN docker-php-ext-configure zip
 
-RUN docker-php-ext-enable redis geoip apcu memcached timezonedb
+RUN docker-php-ext-enable geoip apcu timezonedb
     
 # Install SSL
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem -subj "/C=AT/ST=Vienna/L=Vienna/O=Security/OU=Development/CN=example.com"
@@ -71,7 +72,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer global require drush/drush:"$DRUSH_VERSION" --prefer-dist
 
 # Making drush as global command
-RUN ln -s /root/.config/composer/vendor/bin/drush /bin/
+RUN ln -s /root/.composer/vendor/drush/drush/drush /bin/
 
 # MySQL client installation
 RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
@@ -93,11 +94,6 @@ RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
 
-# Drupal Checks
-RUN composer global require mglaman/drupal-check && \
-  ln -sf /root/.config/composer/vendor/mglaman/drupal-check/drupal-check /bin/ && \
-  chmod +x /bin/drupal-check
-
 # bz2 extenstion
 RUN apt-get update && apt-get install -y libbz2-dev
 RUN docker-php-ext-install bz2
@@ -109,22 +105,47 @@ RUN pecl install uploadprogress && echo 'extension=uploadprogress.so' > /usr/loc
 RUN apt-get install nodejs -y
 
 # Installing xdebug
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug \
-    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    # host.docker.internal does not work on Linux yet: https://github.com/docker/for-linux/issues/264
-    # Workaround:
-    # ip -4 route list match 0/0 | awk '{print $3 " host.docker.internal"}' >> /etc/hosts \
-    # && echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-    && echo "xdebug.client_host=172.19.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.log='/tmp/xdebug.log'" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN pecl install xdebug
 
-# An IDE key has to be set, but anything works, at least for PhpStorm and VS Code...
-ENV XDEBUG_CONFIG="xdebug.idekey='CODE'"
+COPY /xdebug/xdebug-debug.ini /home/xdebug/xdebug-debug.ini
+COPY /xdebug/xdebug-default.ini /home/xdebug/xdebug-default.ini
+COPY /xdebug/xdebug-off.ini /home/xdebug/xdebug-off.ini
+COPY /xdebug/xdebug-profile.ini /home/xdebug/xdebug-profile.ini
+COPY /xdebug/xdebug-trace.ini /home/xdebug/xdebug-trace.ini
+
+ARG XDEBUG_MODES
+ARG REMOTE_HOST="host.docker.internal"
+ARG REMOTE_PORT=9003
+ARG IDE_KEY="VSCODE"
+
+ENV MODES=$XDEBUG_MODES
+ENV CLIENT_HOST=$REMOTE_HOST
+ENV CLIENT_PORT=$REMOTE_PORT
+ENV IDEKEY=$IDE_KEY
 
 # Installing GMP for web push notification 
 RUN apt-get update -y
-RUN apt-get install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
+RUN apt-get install -y libgmp-dev re2c libmhash-dev file
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
 RUN docker-php-ext-configure gmp 
 RUN docker-php-ext-install gmp
+
+# Memcached installation.
+RUN apt-get update && apt-get install --no-install-recommends -y memcached libmemcached-tools libzip-dev libmemcached-dev \
+  && git clone https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached \
+  && cd /usr/src/php/ext/memcached \
+  && docker-php-ext-configure memcached \
+  && docker-php-ext-install memcached
+ARG APP_MEMCACHED
+ENV APP_MEMCACHED=$APP_MEMCACHED
+COPY /memcached/memcached.conf /home/memcached/memcached.conf
+
+# Entrypoint
+COPY /entrypoint.sh /home/entrypoint
+RUN chmod +x /home/entrypoint
+
+# Cron
+COPY /cron/cron_scheduler.txt /home/cron/cron_scheduler.txt
+COPY /cron/cron.sh /home/cron/cron.sh
+
+ENTRYPOINT ["/home/entrypoint"]

@@ -1,0 +1,3 @@
+SHELL=/bin/bash
+BASH_ENV=/etc/profile
+*/60 * * * * /home/cron/cron.sh >> /var/log/cron.log 2>&1
