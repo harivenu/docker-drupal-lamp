@@ -83,4 +83,7 @@ if [[ "enable" == $APP_MEMCACHED || -z $APP_MEMCACHED ]]; then
   start_memcached
 fi;
 
+# Making composer with global scope.
+echo 'export PATH="$PATH:$(composer config -g home)/vendor/bin"' >> /root/.bashrc
+
 start_app

@@ -71,9 +71,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install Drush using Composer.
 RUN composer global require drush/drush:"$DRUSH_VERSION" --prefer-dist
 
-# Making drush as global command
-RUN ln -s /root/.composer/vendor/drush/drush/drush /bin/
-
 # MySQL client installation
 RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
 
