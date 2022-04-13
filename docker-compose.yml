@@ -67,5 +67,18 @@ services:
         ports:
             - 1025:1025
             - 8025:8025
+    varnish:
+        image: varnish:stable
+        volumes:
+          - "./containers/varnish/default.vcl:/etc/varnish/default.vcl"
+        ports:
+          - "8080:80"
+        tmpfs:
+          - /var/lib/varnish:exec
+        environment:
+          - VARNISH_SIZE=1G  
+        command: "-p default_keep=300"
+        depends_on:
+          - "www" 
 volumes:
     persistent:

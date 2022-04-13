@@ -12,6 +12,7 @@ Docker LAMP for Drupal Project Development
 * Mailhog (for catching the email from Drupal app)
 * Drupal Check (https://github.com/mglaman/drupal-check/)
 * xdebug 2.9.6 (Visual Studio Code)
+* Varnish 6.0.10
 
 # Usage
 
