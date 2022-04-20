@@ -102,6 +102,7 @@ RUN pecl install uploadprogress && echo 'extension=uploadprogress.so' > /usr/loc
 RUN apt-get install nodejs -y
 
 # Install soap
+RUN apt-get install -y php7.4-soap 
 RUN docker-php-ext-install soap
 
 # Installing xdebug
