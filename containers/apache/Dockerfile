@@ -51,14 +51,13 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
 
 # Install PECLs
 RUN pecl install geoip-1.1.1 \
-    && pecl install apcu \
     && pecl install timezonedb
 
 RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif 
 
 RUN docker-php-ext-configure zip
 
-RUN docker-php-ext-enable geoip apcu timezonedb
+RUN docker-php-ext-enable geoip timezonedb
     
 # Install SSL
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem -subj "/C=AT/ST=Vienna/L=Vienna/O=Security/OU=Development/CN=example.com"
