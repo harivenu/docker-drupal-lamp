@@ -140,11 +140,11 @@ ENV APP_MEMCACHED=$APP_MEMCACHED
 COPY /memcached/memcached.conf /home/memcached/memcached.conf
 
 # Entrypoint
-COPY /entrypoint.sh /home/entrypoint
-RUN chmod +x /home/entrypoint
+COPY /entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/entrypoint
 
 # Cron
 COPY /cron/cron_scheduler.txt /home/cron/cron_scheduler.txt
 COPY /cron/cron.sh /home/cron/cron.sh
 
-ENTRYPOINT ["/home/entrypoint"]
+CMD ["bash", "entrypoint"]
