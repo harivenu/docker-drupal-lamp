@@ -5,7 +5,7 @@ Docker LAMP for Drupal Project Development
 * Apache 2.4.38(Debian)
 * MySQL 5.7
 * PhpMyAdmin 4.9.0.1
-* PHP 7.4.28
+* PHP 8
 * Drush 11.0.3
 * Composer 2.0.12
 * Memcached 3.1.3
