@@ -1,4 +1,4 @@
-FROM php:8.0-apache 
+FROM php:8.1-apache 
 
 LABEL maintainer="Hari Venu V <harivenu.v1992@gmail.com>"
 
@@ -52,7 +52,7 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
 # Install PECLs
 RUN pecl install timezonedb
 
-RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif 
+RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml xml xsl xmlwriter zip opcache exif 
 
 RUN docker-php-ext-configure zip
 
