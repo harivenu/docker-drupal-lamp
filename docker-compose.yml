@@ -16,15 +16,15 @@ services:
             - REMOTE_PORT=9003 # IDE/Editor's listener port
             - IDE_KEY=VSCODE # IDE's filter/listener key
             # App folder name, add NOFOLDER for disable the DocumentRoot rewrite
-            - APP_FOLDER=NOFOLDER
+            - APP_FOLDER=web
             # Setup cron, available options [enable|disable]
             - APP_CRON=disable
             # Setup memcached, available options [enable|disable]
-            - APP_MEMCACHED=enable
+            - APP_MEMCACHED=diable
         ports: 
             - 80:80
-            - 443:443
-            - 11211:11211
+        #    - 443:443
+        #    - 11211:11211
         volumes:
             - ./www:/var/www/html/
             - ./xdebug:/opt/xdebug/
@@ -40,7 +40,7 @@ services:
         build:
             context: './containers/mysql/'
         ports: 
-            - "3306:3306"
+           - "3306:3306"
         command: --default-authentication-plugin=mysql_native_password
         environment:
             MYSQL_DATABASE: drupal
@@ -81,5 +81,14 @@ services:
         command: "-p default_keep=300"
         depends_on:
           - "www" 
+    solr:
+        image: solr:8
+        ports:
+            - 8983:8983
+        volumes:
+            - ./solr:/var/solr
+        command:
+            - solr-precreate
+            - mysolr
 volumes:
     persistent:

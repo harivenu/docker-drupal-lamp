@@ -1,0 +1,69 @@
+2022-10-15 13:21:40.907 INFO  (main) [   ] o.e.j.u.log Logging initialized @609ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-10-15 13:21:41.009 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 11.0.16+8
+2022-10-15 13:21:41.018 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///opt/solr-8.11.2/server/contexts/] at interval 0
+2022-10-15 13:21:41.157 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2022-10-15 13:21:41.162 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2022-10-15 13:21:41.162 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2022-10-15 13:21:41.163 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
+2022-10-15 13:21:41.188 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2022-10-15 13:21:41.191 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 8.11.2
+2022-10-15 13:21:41.191 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2022-10-15 13:21:41.191 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /opt/solr
+2022-10-15 13:21:41.191 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2022-10-15T13:21:41.191241Z
+2022-10-15 13:21:41.201 INFO  (main) [   ] o.a.s.c.SolrPaths Using system property solr.solr.home: /var/solr/data
+2022-10-15 13:21:41.203 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /var/solr/data/solr.xml
+2022-10-15 13:21:41.251 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@6d60fe40, but no JMX reporters were configured - adding default JMX reporter.
+2022-10-15 13:21:41.584 INFO  (main) [   ] o.a.s.h.c.HttpShardHandlerFactory Host whitelist initialized: WhitelistHostChecker [whitelistHosts=null, whitelistHostCheckingEnabled=true]
+2022-10-15 13:21:41.645 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@7c29adc8[provider=null,keyStore=null,trustStore=null]
+2022-10-15 13:21:41.645 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@7c29adc8[provider=null,keyStore=null,trustStore=null]
+2022-10-15 13:21:41.740 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@608bc8f8[provider=null,keyStore=null,trustStore=null]
+2022-10-15 13:21:41.740 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@608bc8f8[provider=null,keyStore=null,trustStore=null]
+2022-10-15 13:21:41.759 WARN  (main) [   ] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
+2022-10-15 13:21:41.843 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient core cache for max 2147483647 cores with initial capacity of 1024
+2022-10-15 13:21:41.847 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2022-10-15 13:21:41.880 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@6d60fe40
+2022-10-15 13:21:41.880 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@6d60fe40
+2022-10-15 13:21:41.881 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@6d60fe40
+2022-10-15 13:21:41.900 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /var/solr/data
+2022-10-15 13:21:41.901 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [qnl]
+2022-10-15 13:21:41.955 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@55787112{/solr,file:///opt/solr-8.11.2/server/solr-webapp/webapp/,AVAILABLE}{/opt/solr-8.11.2/server/solr-webapp/webapp}
+2022-10-15 13:21:41.962 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.c.SolrResourceLoader Added 64 libs to classloader, from paths: [/opt/solr/contrib/analysis-extras/lib, /opt/solr/contrib/analysis-extras/lucene-libs, /opt/solr/contrib/extraction/lib, /opt/solr/contrib/langid/lib, /opt/solr/dist]
+2022-10-15 13:21:41.980 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@78365cfa{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8983}
+2022-10-15 13:21:41.982 INFO  (main) [   ] o.e.j.s.Server Started @1684ms
+2022-10-15 13:21:42.119 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.c.SolrConfig Using Lucene MatchVersion: 8.11.0
+2022-10-15 13:21:42.121 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.u.SolrIndexConfig IndexWriter infoStream solr logging is enabled
+2022-10-15 13:21:42.186 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.IndexSchema Schema name=drupal-4.2.9-solr-8.x-0
+2022-10-15 13:21:42.343 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.IndexSchema Loaded schema drupal-4.2.9-solr-8.x-0/1.6 with uniqueid field id
+2022-10-15 13:21:42.789 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.c.CoreContainer Creating SolrCore 'qnl' using configuration from instancedir /var/solr/data/qnl, trusted=true
+2022-10-15 13:21:42.806 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.qnl' (registry 'solr.core.qnl') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@6d60fe40
+2022-10-15 13:21:42.816 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.c.SolrCore [[qnl] ] Opening new SolrCore at [/var/solr/data/qnl], dataDir=[/var/solr/data/qnl/data/]
+2022-10-15 13:21:42.836 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
+2022-10-15 13:21:43.048 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2022-10-15 13:21:43.048 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2022-10-15 13:21:43.054 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2022-10-15 13:21:43.054 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.u.CommitTracker Soft AutoCommit: if uncommitted for 5000ms; 
+2022-10-15 13:21:43.090 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /var/solr/data/qnl/conf
+2022-10-15 13:21:43.096 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2022-10-15 13:21:43.099 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.DirectSolrSpellChecker init: {name=en,field=spellcheck_en,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01,thresholdTokenFrequency=.01,onlyMorePopular=true}
+2022-10-15 13:21:43.099 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.DirectSolrSpellChecker init: {name=und,field=spellcheck_und,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01,thresholdTokenFrequency=.01,onlyMorePopular=true}
+2022-10-15 13:21:43.100 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.h.c.SuggestComponent Initializing SuggestComponent
+2022-10-15 13:21:43.101 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.s.SolrSuggester init: {name=en,lookupImpl=AnalyzingInfixLookupFactory,dictionaryImpl=DocumentDictionaryFactory,field=twm_suggest,suggestAnalyzerFieldType=text_en,contextField=sm_context_tags,buildOnCommit=true,buildOnStartup=false}
+2022-10-15 13:21:43.108 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.s.SolrSuggester Dictionary loaded with params: {name=en,lookupImpl=AnalyzingInfixLookupFactory,dictionaryImpl=DocumentDictionaryFactory,field=twm_suggest,suggestAnalyzerFieldType=text_en,contextField=sm_context_tags,buildOnCommit=true,buildOnStartup=false}
+2022-10-15 13:21:43.109 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.h.c.SuggestComponent Registering searcher listener for suggester: en = SuggesterListener [core=org.apache.solr.core.SolrCore@5240bb79, suggester=SolrSuggester [ name=en, sourceLocation=null, storeDir=, lookupImpl=AnalyzingInfixLookupFactory, dictionaryImpl=DocumentDictionaryFactory, sizeInBytes=48 ], buildOnCommit=true, buildOnOptimize=false, buildOnStartup=false, isCoreReload=false]
+2022-10-15 13:21:43.109 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.s.SolrSuggester init: {name=und,lookupImpl=AnalyzingInfixLookupFactory,dictionaryImpl=DocumentDictionaryFactory,field=twm_suggest,suggestAnalyzerFieldType=text_und,contextField=sm_context_tags,buildOnCommit=true,buildOnStartup=false}
+2022-10-15 13:21:43.110 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.s.s.SolrSuggester Dictionary loaded with params: {name=und,lookupImpl=AnalyzingInfixLookupFactory,dictionaryImpl=DocumentDictionaryFactory,field=twm_suggest,suggestAnalyzerFieldType=text_und,contextField=sm_context_tags,buildOnCommit=true,buildOnStartup=false}
+2022-10-15 13:21:43.110 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.h.c.SuggestComponent Registering searcher listener for suggester: und = SuggesterListener [core=org.apache.solr.core.SolrCore@5240bb79, suggester=SolrSuggester [ name=und, sourceLocation=null, storeDir=, lookupImpl=AnalyzingInfixLookupFactory, dictionaryImpl=DocumentDictionaryFactory, sizeInBytes=48 ], buildOnCommit=true, buildOnOptimize=false, buildOnStartup=false, isCoreReload=false]
+2022-10-15 13:21:43.110 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.h.c.QueryElevationComponent Loading QueryElevation from: /var/solr/data/qnl/conf/elevate.xml
+2022-10-15 13:21:43.115 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.h.ReplicationHandler Commits will be reserved for 10000 ms
+2022-10-15 13:21:43.117 INFO  (coreLoadExecutor-13-thread-1) [   x:qnl] o.a.s.u.UpdateLog Could not find max version in index or recent updates, using new clock 1746759951966011392
+2022-10-15 13:21:43.139 INFO  (searcherExecutor-15-thread-1-processing-x:qnl) [   x:qnl] o.a.s.c.S.Request [qnl]  webapp=null path=null params={q=static+firstSearcher+warming+in+solrconfig.xml&distrib=false&event=firstSearcher} hits=0 status=0 QTime=18
+2022-10-15 13:21:43.139 INFO  (searcherExecutor-15-thread-1-processing-x:qnl) [   x:qnl] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2022-10-15 13:21:43.139 INFO  (searcherExecutor-15-thread-1-processing-x:qnl) [   x:qnl] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: en
+2022-10-15 13:21:43.139 INFO  (searcherExecutor-15-thread-1-processing-x:qnl) [   x:qnl] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: und
+2022-10-15 13:21:43.142 INFO  (searcherExecutor-15-thread-1-processing-x:qnl) [   x:qnl] o.a.s.c.SolrCore [qnl]  Registered new searcher autowarm time: 0 ms
+2022-10-15 13:21:44.138 INFO  (qtp1810923540-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1665840104107} status=0 QTime=0
+2022-10-15 13:21:44.145 INFO  (qtp1810923540-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1665840104108} status=0 QTime=8
+2022-10-15 13:21:44.149 INFO  (qtp1810923540-16) [   x:qnl] o.a.s.c.S.Request [qnl]  webapp=/solr path=/admin/system params={wt=json&_=1665840104128} status=0 QTime=10
+2022-10-15 13:21:44.151 INFO  (qtp1810923540-40) [   x:qnl] o.a.s.c.S.Request [qnl]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1665840104108&ts=1665840104108} status=503 QTime=13
+2022-10-15 13:21:44.155 INFO  (qtp1810923540-22) [   x:qnl] o.a.s.c.S.Request [qnl]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1665840104128} status=0 QTime=14
+2022-10-15 13:21:44.158 INFO  (qtp1810923540-41) [   x:qnl] o.a.s.c.S.Request [qnl]  webapp=/solr path=/replication params={wt=json&command=details&_=1665840104128} status=0 QTime=17
