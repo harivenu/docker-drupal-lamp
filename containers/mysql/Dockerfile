@@ -1,4 +1,4 @@
-FROM mysql:5.7.37
+FROM mysql:8.0.31
 
 LABEL maintainer="Hari Venu V <harivenu.v1992@gmail.com>"
 
