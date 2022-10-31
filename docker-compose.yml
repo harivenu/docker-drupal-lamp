@@ -20,7 +20,7 @@ services:
             # Setup cron, available options [enable|disable]
             - APP_CRON=disable
             # Setup memcached, available options [enable|disable]
-            - APP_MEMCACHED=diable
+            - APP_MEMCACHED=enable
         ports: 
             - 80:80
         #    - 443:443
