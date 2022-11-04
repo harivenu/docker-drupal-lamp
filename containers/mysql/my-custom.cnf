@@ -14,3 +14,4 @@
 # join_buffer_size = 128M
 # sort_buffer_size = 2M
 # read_rnd_buffer_size = 2M
+tmpdir=/tmp
